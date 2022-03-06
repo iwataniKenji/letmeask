@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { auth, firebase } from "../services/firebase";
+import { AuthContext } from "../App";
 
 import illustrationImg from "../assets/images/illustration.svg";
 import logoImg from "../assets/images/logo.svg";
@@ -9,27 +9,20 @@ import googleIconImg from "../assets/images/google-icon.svg";
 
 import { Button } from "../components/Button";
 
-import { TestContext } from "../App";
-
 import "../styles/auth.scss";
 
 export function Home() {
   const history = useNavigate();
+  const { user, signInWithGoogle } = useContext(AuthContext);
 
-  // value -> valor do contexto
-  // setValue -> possibilita modificar o valor
-  const { value, setValue } = useContext(TestContext);
+  async function handleCreateRoom() {
+    // se usuário não estiver autenticado -> sign in
+    if (!user) {
+      await signInWithGoogle();
+    }
 
-  function handleCreateRoom() {
-    const provider = new firebase.auth.GoogleAuthProvider(); // autenticação com google
-
-    auth.signInWithPopup(provider).then((result) => {
-      // depois de logar
-      console.log(result);
-
-      // redirecionamento
-      history("/rooms/new");
-    });
+    // redirecionamento
+    history("/rooms/new");
   }
 
   return (
@@ -43,7 +36,6 @@ export function Home() {
         <p>Tire as dúvidas da sua audiência em tempo real</p>
       </aside>
       <main>
-        <h1>{value}</h1>
         <div className="main-content">
           <img src={logoImg} alt="Letmeask" />
           <img src={googleIconImg} alt="Logo do Google" />

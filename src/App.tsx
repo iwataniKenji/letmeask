@@ -4,21 +4,60 @@ import { Routes } from "react-router";
 
 import { Home } from "./pages/Home";
 import { NewRoom } from "./pages/NewRoom";
+import { auth, firebase } from "./services/firebase";
 
-export const TestContext = createContext({} as any); // () -> formato da informação
+type User = {
+  id: string;
+  name: string;
+  avatar: string;
+};
+
+type AuthContextType = {
+  user: User | undefined;
+  signInWithGoogle: () => Promise<void>; // void -> não tem retorno
+};
+
+export const AuthContext = createContext({} as AuthContextType); // () -> formato da informação
 
 // tudo que está dentro do provider consegue enxergar o 'value' do contexto
 function App() {
-  const [value, setValue] = useState("Teste");
+  const [user, setUser] = useState<User>();
 
+  async function signInWithGoogle() {
+    // autenticação com google
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    // esperar autenticação
+    const result = await auth.signInWithPopup(provider);
+
+    // se autenticação retornar usuário
+    if (result.user) {
+      // guardar nome, foto e id
+      const { displayName, photoURL, uid } = result.user;
+
+      // se sem nome e sem foto -> erro
+      if (!displayName || !photoURL) {
+        throw new Error("Missing information from Google Account");
+      }
+
+      // salvar info do usuário
+      setUser({
+        id: uid,
+        name: displayName,
+        avatar: photoURL,
+      });
+    }
+  }
+
+  // todas as páginas dentro de AuthContext podem receber valor do 'user' (dados) e 'sign in' (qualquer página pode fazer log in)
   return (
     <BrowserRouter>
-      <TestContext.Provider value={{ value, setValue }}>
+      <AuthContext.Provider value={{ user, signInWithGoogle }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/rooms/new" element={<NewRoom />} />
         </Routes>
-      </TestContext.Provider>
+      </AuthContext.Provider>
     </BrowserRouter>
   );
 }
