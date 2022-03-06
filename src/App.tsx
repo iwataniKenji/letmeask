@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Routes } from "react-router";
 
@@ -22,6 +22,25 @@ export const AuthContext = createContext({} as AuthContextType); // () -> format
 // tudo que está dentro do provider consegue enxergar o 'value' do contexto
 function App() {
   const [user, setUser] = useState<User>();
+
+  // busca dados do usuário já logado
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        const { displayName, photoURL, uid } = user;
+
+        if (!displayName || !photoURL) {
+          throw new Error("Missing information from Google Account");
+        }
+
+        setUser({
+          id: uid,
+          name: displayName,
+          avatar: photoURL,
+        });
+      }
+    });
+  }, []);
 
   async function signInWithGoogle() {
     // autenticação com google
