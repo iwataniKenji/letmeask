@@ -43,6 +43,12 @@ export function Home() {
       return;
     }
 
+    // se sala já finalizada -> alerte e retorne
+    if (roomRef.val().closedAt) {
+      alert("Room already closed.");
+      return;
+    }
+
     // entrar na sala
     history(`/rooms/${roomCode}`);
   }

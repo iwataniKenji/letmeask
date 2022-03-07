@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import logoImg from "../assets/images/logo.svg";
 import deleteImg from "../assets/images/delete.svg";
@@ -19,6 +19,8 @@ type RoomParams = {
 export function AdminRoom() {
   // const { user } = useAuth();
 
+  const history = useNavigate();
+  
   // parâmetros ficam armazenados em constante
   const params = useParams<RoomParams>();
 
@@ -27,6 +29,17 @@ export function AdminRoom() {
 
   // hook
   const { title, questions } = useRoom(roomId!);
+
+  async function handleEndRoom() {
+    // update -> altera dados da sala
+    await database.ref(`rooms/${roomId}`).update({
+      // adiciona propriedade "finalizado agora"
+      closedAt: new Date(),
+    })
+
+    // volta para rota raiz
+    history('/');
+  }
 
   async function handleDeleteQuestion(questionId: string) {
     // confirm -> retorna boolean
@@ -42,7 +55,7 @@ export function AdminRoom() {
           <img src={logoImg} alt="Letmeask" />
           <div>
             <RoomCode code={roomId!} />
-            <Button isOutlined>Encerrar sala</Button>
+            <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
           </div>
         </div>
       </header>
