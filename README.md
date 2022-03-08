@@ -1,36 +1,77 @@
-<!-- ## Available Scripts
+<section align="center">
+    <img src="./src/assets/images/logo.svg" />
+</section>
 
-In the project directory, you can run:
+---
 
-### `yarn start`
+<h2 align="center">Summary</h2>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<p align="center">
+    <a href="#about">📙 About</a>
+    <a href="#preview">🖼️ Preview</a>
+    <!-- <a href="#start">📖 How to Start</a> -->
+    <a href="#features">💡 Features</a>
+    <a href="#technologies">💻 Technologies</a>
+</p>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<h4 align="center">
+   ✔️ Letmeask project finished ✔️
+</h4>
 
-### `yarn test`
+<H2 id="about">📙 About</H2>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<p>Letmeask is a project developed for content creators to create Q&A rooms in a more organized and democratic way, helping the host to find more relevant questions faster</p>
+<p>Originally created on Next Level Week Together #6 and made by Kenji Iwatani</p>
+<p>
+    <h3><a href="https://letmeask-c10c3.web.app/">Check website &rarr;</a></h3>
+</p>
 
-### `yarn build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<H2 id="preview">🖼️ Preview</H2>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<section align="center">
+    <img alt="Letmeask website overview" src="preview.gif"/>
+</section>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `yarn eject`
+<!-- <H2 id="start">📖 How to Start</H2>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+# Clone this repository
+$ git clone https://github.com/iwataniKenji/forkify-app.git
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Access the project directory
+$ cd forkify-app
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Open the project directory on vscode
+$
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it. -->
+# Install dependencies
+$ npm install
+
+# Initialize and open local host
+$ npm start
+```
+
+--- -->
+
+<H2 id="features">💡 Features</H2>
+
+- [x] Google authentication
+- [x] Navigation between pages
+- [x] Database usage
+- [x] Creating, joining and closing rooms
+- [x] "Copy room code to clipboard" button
+- [x] Separated admin and user events
+- [x] Question buttons (like, answered, highlight, remove)
+
+---
+
+<H2 id="technologies">💻 Technologies</H2>
+
+- [x] Typescript
+- [x] React
+- [x] SCSS
+- [x] Firebase
