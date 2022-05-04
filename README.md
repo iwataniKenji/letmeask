@@ -1,8 +1,6 @@
 <section align="center">
-    <img src="./src/assets/images/logo.svg" />
+    <img src="./src/assets/images/cover.svg" />
 </section>
-
----
 
 <h2 align="center">Summary</h2>
 
