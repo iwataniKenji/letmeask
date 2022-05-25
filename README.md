@@ -19,6 +19,7 @@
 <H2 id="about">📙 About</H2>
 
 <p>Letmeask is a project developed for content creators to create Q&A rooms in a more organized and democratic way, helping the host to find more relevant questions faster</p>
+<p>This project used <a href="https://firebase.google.com/">Firebase</a> for deployment.</p>
 <p>Originally created on Next Level Week Together #6 and made by <a href="https://www.linkedin.com/in/kleverson-kenji-iwatani/">Kenji Iwatani</a></p>
 <p>
     <h3><a href="https://letmeask-c10c3.web.app/">Check website &rarr;</a></h3>
